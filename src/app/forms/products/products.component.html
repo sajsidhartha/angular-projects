@@ -1,0 +1,93 @@
+<form [formGroup]="productform">
+    <fieldset formArrayName="products">
+        
+            <div *ngFor="let product of formData.controls; let i=index">
+                <div [formGroupName]="i">
+<div class="row mb-4">
+    
+     
+    <div class="col">
+        <div class="form-outline">
+        <label class="form-label" for="product_id">Product ID</label> 
+    <input id="product_id"  placeholder="" formControlName="id" class="form-control input-md" required="" type="text">
+      </div></div>
+  
+    <div class="col">
+    <div class="form-outline " [ngClass]="displayFieldCss('name')">
+    
+        <label class="form-label" for="product_name">Product Name</label>  
+    <input id="product_name"  formControlName="name" placeholder="" class="form-control input-md" required="" type="text">
+    <label *ngIf="formData.controls[i].get('name')?.invalid && formData.controls[i].get('name')?.touched">
+        Name required.
+      </label>     
+</div>
+    </div>
+    <div class="col">
+        <div class="form-outline "> 
+            <label class="form-label" for="product_name_fr">Product Desc</label> </div>
+            <input id="product_name_fr"  formControlName="desc" placeholder="" class="form-control input-md" required="" type="text">
+        </div>
+</div>
+
+<div class="row mb-4">
+    
+     
+    <div class="col">
+        <div class="form-outline">
+        <label class="form-label" for="product_id">Product Category</label> 
+        <select  class="form-select" formControlName="category" >
+            <option selected>Choose...</option>
+            <option value="Wheat">Wheat</option>
+            <option value="Rice">Rice</option>
+            <option value="Maize">Maize</option>
+            <option value="Corn">Corn</option>
+            </select>
+    </div></div>
+  
+    <div class="col">
+    <div class="form-outline ">
+   
+   
+        <label class="form-label" for="product_name">Product Weight</label>  
+        <div class="form-check">
+            <input class="form-check-input"  formControlName="weight" type="radio" value="10"  id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              10 Kg
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" formControlName="weight" type="radio" value="20"  id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+             20 Kg
+            </label>
+          </div>
+          <label *ngIf="formData.controls[i].get('weight')?.invalid && formData.controls[i].get('weight')?.touched && formData.controls[i].get('weight')!.hasError('required') ">
+            Name required.
+          </label>  
+      </div>
+    </div>
+    <div class="col">
+        <div class="form-outline "> 
+            <label class="form-label" for="product_name_fr">Product Quantity</label> </div>
+          
+            <div class="form-check" *ngFor="let n of quantity;" >
+                <input class="form-check-input" [checked]="n.quantity==10"  type="checkbox" id="quantity" 
+                (change)="updateChkbxArray(n.quantity,$any($event.target)?.checked,'quantity',i)" />
+                <label class="form-check-label" for="defaultCheck1">
+                  {{n.quantity}} Kg
+                </label>
+              </div>
+              
+        </div>
+</div>
+<div class="row mb-4"> <button type="button" class="btn btn-primary" (click)="removeProduct(i)" *ngIf="i !== 0">Remove</button></div>
+  </div></div>
+ 
+  
+</fieldset>
+<div class="row mb-4">
+    
+    <button type="button" class="btn btn-primary" (click)="addProduct()">Add Product</button>
+    <button type="button" class="btn btn-primary" (click)="submitProduct()">Submit</button>
+</div>
+</form>

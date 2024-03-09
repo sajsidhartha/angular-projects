@@ -1,0 +1,58 @@
+<form [formGroup]="userform">
+  <div formArrayName="users">
+    <div *ngFor="let usr of userArray.controls; let i = index;">
+      <div [formGroupName]="i">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+   
+    <div class="row ">
+      <div class="col">
+        
+        <div class="form-outline" >
+          <input type="text" id="form6Example1" class="form-control" formControlName="firstname"/>
+          <label class="form-label" for="form6Example1">First name</label>
+        </div>
+       
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="form6Example2" class="form-control"  formControlName="lastname"/>
+          <label class="form-label" for="form6Example2">Last name</label>
+        </div>
+      </div>
+    </div>
+    
+  
+    <!-- Text input -->
+    <div class="form-outline">
+      <input type="text" id="form6Example3" class="form-control" formControlName="age" />
+      <label class="form-label" for="form6Example3">Age</label>
+    </div>
+  
+    <!-- Text input -->
+  
+    <div class="row ">
+        <div class="col">
+    <div class="form-outline ">
+      <input type="text" id="form6Example4" class="form-control" formControlName="gender" />
+      <label class="form-label" for="form6Example4">Gender</label>
+    </div>
+    </div>
+    <div class="col">
+        <div class="form-outline ">
+          <input type="text" id="form6Example4" class="form-control" formControlName="email" />
+          <label class="form-label" for="form6Example4">Email</label>
+        </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline ">
+              <input type="text" id="form6Example4" class="form-control" formControlName="phone" />
+              <label class="form-label" for="form6Example4">Phone</label>
+            </div>
+            </div>
+      </div>
+ </div></div>
+    </div>
+    <button type="button" class="btn btn-primary btn-block mb-4" (click)="postCustomerInfo()">Place order</button>
+  </form>
